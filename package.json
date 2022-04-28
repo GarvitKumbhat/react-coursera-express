@@ -1,0 +1,23 @@
+{
+  "name": "node-express",
+  "version": "1.0.0",
+  "description": "\"Node Express examples\"",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node index"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/GarvitKumbhat/react-coursera-express.git"
+  },
+  "author": "Garvit Kumbhat",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/GarvitKumbhat/react-coursera-express/issues"
+  },
+  "homepage": "https://github.com/GarvitKumbhat/react-coursera-express#readme",
+  "dependencies": {
+    "express": "^4.18.0"
+  }
+}
