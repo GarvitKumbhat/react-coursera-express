@@ -15,13 +15,13 @@ app.use(morgan('dev'))
 app.use(bodyParser.json())
 
 app.use('/dishes', dishRouter)
-app.use('/dishes/:dishId', dishRouter)
+// app.use('/dishes/:dishId', dishRouter) //Don't need this
 
 app.use('/promotions', promoRouter)
-app.use('/promotions/:promoId', promoRouter)
+// app.use('/promotions/:promoId', promoRouter) //Don't need this
 
 app.use('/leaders', leaderRouter)
-app.use('/leaders/:leaderId', leaderRouter)
+// app.use('/leaders/:leaderId', leaderRouter) //Don't need this
 
 app.use(express.static(__dirname + '/public'))
 
