@@ -9,18 +9,32 @@ connect.then((db) => {
     console.log('Connected currently to the server')
 
     Dishes.create({
-        name: 'Uthappizza',
+        name: 'Uthappizza1',
         description: 'test'
     })
         .then((dish) => {
             console.log(dish)
 
-            return Dishes.find({})
+            return Dishes.findByIdAndUpdate(dish._id, {
+                $set: {
+                    description: 'Updated test'
+                }
+            }, {
+                new: true
+            })
         })
-        .then((dishes) => {
-            console.log(dishes)
-
-            return Dishes.remove({})
+        .then((dish) => {
+            console.log(dish)
+            dish.comments.push({
+                rating: 5,
+                comment: `I'm getting a sinking feeling`,
+                author: 'Garvit Kumbhat'
+            })
+            return dish.save()
+        })
+        .then((dish) => {
+            console.log(dish)
+            return Dishes.deleteOne({})
         })
         .then(() => {
             return mongoose.connection.close()
