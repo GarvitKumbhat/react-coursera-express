@@ -99,23 +99,23 @@ dishRouter.route('/:dishId/comments')
     })
     .post((req, res, next) => {
         Dishes.findById(req.params.dishId)
-        .then((dish) => {
-            if (dish != null) {
-                dish.comments.unshift(req.body);
-                dish.save()
-                .then((dish) => {
-                    res.statusCode = 200;
-                    res.setHeader('Content-Type', 'application/json');
-                    res.json(dish);                
-                }, (err) => next(err));
-            }
-            else {
-                err = new Error('Dish ' + req.params.dishId + ' not found');
-                err.status = 404;
-                return next(err);
-            }
-        }, (err) => next(err))
-        .catch((err) => next(err));
+            .then((dish) => {
+                if (dish != null) {
+                    dish.comments.unshift(req.body);
+                    dish.save()
+                        .then((dish) => {
+                            res.statusCode = 200;
+                            res.setHeader('Content-Type', 'application/json');
+                            res.json(dish);
+                        }, (err) => next(err));
+                }
+                else {
+                    err = new Error('Dish ' + req.params.dishId + ' not found');
+                    err.status = 404;
+                    return next(err);
+                }
+            }, (err) => next(err))
+            .catch((err) => next(err));
     })
     .put((req, res, next) => {
         res.statusCode = 403
@@ -181,6 +181,11 @@ dishRouter.route('/:dishId/comments/:commentId')
                     }
                     if (req.body.comment) {
                         dish.comments.id(req.params.commentId).comment = req.body.comment
+                    }
+                    if (req.body.author) {
+                        err = new Error('Author Update not allowed')
+                        err.status = 403
+                        return next(err)
                     }
                     dish.save()
                         .then((dish) => {
