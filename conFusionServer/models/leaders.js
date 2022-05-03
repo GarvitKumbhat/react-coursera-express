@@ -27,6 +27,8 @@ const leaderSchema = new Schema({
         type: Boolean,
         default: false
     }
+}, {
+    timestamps: true
 })
 
 const Leader = monogoose.model('Leader', leaderSchema)

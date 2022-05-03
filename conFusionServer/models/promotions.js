@@ -30,6 +30,8 @@ const promotionSchema = new Schema({
         type: Boolean,
         default: false
     }
+}, {
+    timestamps: true
 })
 
 var Promo = mongoose.model('Promotion', promotionSchema)
