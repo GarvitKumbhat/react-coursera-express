@@ -37,3 +37,13 @@ exports.jwtPassport = passport.use(new JwtStrategy(opts, (jwt_payload, done) => 
 }))
 
 exports.verifyUser = passport.authenticate('jwt', { session: false })
+exports.verifyAdmin = function (req, res, next) {
+    if (req.user.admin) {
+        next()
+    }
+    else {
+        err = new Error('Only admin has the access and you are not an admin');
+        err.status = 403;
+        throw next(err);
+    }
+}
