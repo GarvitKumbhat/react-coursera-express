@@ -72,11 +72,11 @@ router.post('/login', cors.corsWithOptions, (req, res) => {
       }
 
       var token = authenticate.getToken({ _id: req.user._id })
-      res.statusCode = 401
+      res.statusCode = 200
       res.setHeader('Content-Type', 'application/json')
       res.json({ success: true, status: 'Login Successful !', token: token })
     })
-  })(req, res, next)
+  })(req, res)
 })
 
 router.get('/logout', cors.corsWithOptions, (req, res) => {
